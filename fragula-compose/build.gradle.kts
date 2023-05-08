@@ -49,8 +49,8 @@ afterEvaluate {
                 // Applies the component for the release build variant.
                 from(components["release"])
                 // You can then customize attributes of the publication as shown below.
-                groupId = "com.fragula2"
-                artifactId = "compose"
+                groupId = "com.github.vickyleu"
+                artifactId = "fragula-compose"
                 version = "2.7.0"
             }
             // Creates a Maven publication called “debug”.
@@ -58,8 +58,8 @@ afterEvaluate {
                 // Applies the component for the release build variant.
                 from(components["debug"])
                 // You can then customize attributes of the publication as shown below.
-                groupId = "com.fragula2"
-                artifactId = "compose"
+                groupId = "com.github.vickyleu"
+                artifactId = "fragula-compose"
                 version = "2.7.0"
             }
         }

@@ -37,33 +37,29 @@ android {
     buildFeatures {
         compose = true
     }
-//    publishing {
-//        publications {
-//            create<MavenPublication>("maven") {
-//                groupId = "com.fragula2.compose"
-//                artifactId = "compose"
-//                version = "2.7.0"
-//                from(components["kotlin"])
-//            }
-//        }
-//    }
 }
 
+// Because the components are created only during the afterEvaluate phase, you must
+// configure your publications using the afterEvaluate() lifecycle method.
 afterEvaluate {
     publishing {
         publications {
             // Creates a Maven publication called "release".
             register("release", MavenPublication::class) {
                 // Applies the component for the release build variant.
-                // NOTE : Delete this line code if you publish Native Java / Kotlin Library
                 from(components["release"])
-                // Library Package Name (Example : "com.frogobox.androidfirstlib")
-                // NOTE : Different GroupId For Each Library / Module, So That Each Library Is Not Overwritten
+                // You can then customize attributes of the publication as shown below.
                 groupId = "com.fragula2"
-                // Library Name / Module Name (Example : "androidfirstlib")
-                // NOTE : Different ArtifactId For Each Library / Module, So That Each Library Is Not Overwritten
                 artifactId = "compose"
-                // Version Library Name (Example : "1.0.0")
+                version = "2.7.0"
+            }
+            // Creates a Maven publication called “debug”.
+            register("debug", MavenPublication::class) {
+                // Applies the component for the release build variant.
+                from(components["debug"])
+                // You can then customize attributes of the publication as shown below.
+                groupId = "com.fragula2"
+                artifactId = "compose"
                 version = "2.7.0"
             }
         }
@@ -78,5 +74,6 @@ dependencies {
     implementation("androidx.compose.foundation:foundation:1.4.3")
     implementation("androidx.navigation:navigation-compose:2.5.3")
     // Common
+//    implementation("com.fragula2:fragula-common:2.7")
     api(project(":fragula-common"))
 }
